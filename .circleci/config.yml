@@ -58,7 +58,7 @@ jobs:
       - run:
           name: Run pylint
           command: |
-            pylint easy_bill || true
+            pylint art_store || true
 
       - run:
           name: Run Django Tests
@@ -113,8 +113,8 @@ jobs:
           name: Deploy to Elastic Beanstalk
           command: |
             pip install awsebcli
-            eb init "devops-eb-myapp" --platform python-3.11 --region "$AWS_REGION"
-            eb deploy myapp-x23304723
+            eb init "Project-devops-eb-x23213914-env" --platform python-3.11 --region "$AWS_REGION"
+            eb deploy Project-devops-eb-x23213914
 
 
 
