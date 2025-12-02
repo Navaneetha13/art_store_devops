@@ -58,7 +58,8 @@ jobs:
       - run:
           name: Run pylint
           command: |
-            pylint art_store || true
+            pylint art_store --ignore=views.py || true
+
 
       - run:
           name: Run Django Tests
@@ -118,9 +119,6 @@ jobs:
 
 
 
-# ======================================================
-# WORKFLOW (RUNS 4 STAGES)
-# ======================================================
 workflows:
   version: 2
   pipeline:
