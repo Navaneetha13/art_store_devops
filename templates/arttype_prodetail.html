@@ -1,0 +1,75 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+{% block content %}
+			<!-- start banner Area -->
+			<section class="banner-area relative" id="home">	
+				<div class="overlay overlay-bg"></div>
+				<div class="container">
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								Art Products				
+							</h1>	
+							<p class="text-white link-nav"><a href="{% url 'index' %}">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{% url 'contactus' %}"> Art Products</a></p>
+						</div>											
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->	
+			
+
+			<!-- Start upcoming-exibition Area -->
+			<section class="upcoming-exibition-area section-gap">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-70 col-lg-8">
+							<div class="title text-center">
+								<h1 class="mb-10">Art Products</h1>
+
+                                <p style="font-size: large;font-weight: bolder;text-align: center;">{{arttype_id.arttype}}</p>
+							</div>
+						</div>
+					</div>						
+					<div class="row">
+						{% if artproducts %}
+                        {% for i in artproducts  %}
+                        
+						<div class="col-lg-4 col-md-6 single-exhibition">
+                            
+							<div class="thumb">
+								<img class="img-fluid" src="{{i.images.url}}" alt="">						
+							</div>
+							<p class="date">{{i.created_at}}</p>
+							<a href="#"><h4>{{i.title}} by ({{i.artist.name}})</h4></a>
+							<p>
+								{{i.description|slice:":300"}}
+							</p>
+                            <p>Medium: {{i.artmedium.artmedium}}</p>
+							<div class="meta-bottom d-flex justify-content-start">
+								<p class="price">${{i.sellingprice}}</p><br>
+                                
+                                
+							</div>
+                           
+                            <div class="meta-bottom d-flex justify-content-start">
+								<p class="price"> <a href="{% url 'view_singleproduct' i.id %}" class="btn btn-success">
+                                    View Details</a></p>
+							</div>
+                           								
+						</div>{% endfor %}
+						{% else %}
+						
+						<div class="col-lg-4 col-md-6 single-exhibition">
+							<p style="font-size: 20px; color: red;">No Products available.</p>
+						</div>
+						{% endif %}
+						
+                    																	
+					</div>
+				</div>	
+                
+			</section>
+           
+
+			{% endblock %}

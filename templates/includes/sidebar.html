@@ -1,0 +1,145 @@
+{% load static %}
+<aside class="main-sidebar elevation-4" style="background: linear-gradient(135deg, #676565 0%, #8d8d8d 100%);">
+  <a style="text-align: center; padding: 20px 0; display: block; background: linear-gradient(135deg, #ffde7d 0%, #d14e68 100%); border-bottom: 3px solid #e94560;" href="{% url 'dashboard' %}" class="brand-link">
+    <span class="brand-text" style="font-size: 32px; font-weight: 700; color: #ffffff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); letter-spacing: 2px;">ArtStore</span>
+  </a>
+
+  <div class="sidebar">
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="border-bottom: 2px solid #e94560;">
+      <div class="image">
+      </div>
+      <div class="info">
+        <a href="{% url 'admin_profile' %}" class="d-block" style="color: #f1f1f1; font-weight: 600; transition: color 0.3s;" onmouseover="this.style.color='#e94560'" onmouseout="this.style.color='#f1f1f1'">{{user.first_name}} {{user.last_name}}</a>
+      </div>
+    </div>
+
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <a href="{% url 'dashboard' %}" class="nav-link" style="background: linear-gradient(135deg, #ffde7d 0%, #d14e68 100%); color: white; margin-bottom: 8px; border-radius: 5px; transition: transform 0.3s;" onmouseover="this.style.transform='translateX(10px)'" onmouseout="this.style.transform='translateX(0)'">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a href="#" class="nav-link" style="color: #f1f1f1; transition: background 0.3s;" onmouseover="this.style.backgroundColor='#16213e'" onmouseout="this.style.backgroundColor='transparent'">
+            <i class="nav-icon fas fa-copy" style="color: #e94560;"></i>
+            <p>Artist<i class="fas fa-angle-left right"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'add_artist' %}" class="nav-link" style="color: #b8b8b8; padding-left: 40px; transition: all 0.3s;" onmouseover="this.style.color='#e94560'; this.style.paddingLeft='45px'" onmouseout="this.style.color='#b8b8b8'; this.style.paddingLeft='40px'">
+                <i class="far fa-circle nav-icon" style="font-size: 10px;"></i>
+                <p>Add Artist</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'manage_artist' %}" class="nav-link" style="color: #b8b8b8; padding-left: 40px; transition: all 0.3s;" onmouseover="this.style.color='#e94560'; this.style.paddingLeft='45px'" onmouseout="this.style.color='#b8b8b8'; this.style.paddingLeft='40px'">
+                <i class="far fa-circle nav-icon" style="font-size: 10px;"></i>
+                <p>Manage Artist</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+        <li class="nav-item">
+          <a href="#" class="nav-link" style="color: #f1f1f1; transition: background 0.3s;" onmouseover="this.style.backgroundColor='#16213e'" onmouseout="this.style.backgroundColor='transparent'">
+            <i class="nav-icon fas fa-chart-pie" style="color: #e94560;"></i>
+            <p>Art Type<i class="right fas fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'add_arttype' %}" class="nav-link" style="color: #b8b8b8; padding-left: 40px; transition: all 0.3s;" onmouseover="this.style.color='#e94560'; this.style.paddingLeft='45px'" onmouseout="this.style.color='#b8b8b8'; this.style.paddingLeft='40px'">
+                <i class="far fa-circle nav-icon" style="font-size: 10px;"></i>
+                <p>Add Type</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'manage_arttype' %}" class="nav-link" style="color: #b8b8b8; padding-left: 40px; transition: all 0.3s;" onmouseover="this.style.color='#e94560'; this.style.paddingLeft='45px'" onmouseout="this.style.color='#b8b8b8'; this.style.paddingLeft='40px'">
+                <i class="far fa-circle nav-icon" style="font-size: 10px;"></i>
+                <p>Manage Type</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+        <li class="nav-item">
+          <a href="#" class="nav-link" style="color: #f1f1f1; transition: background 0.3s;" onmouseover="this.style.backgroundColor='#16213e'" onmouseout="this.style.backgroundColor='transparent'">
+            <i class="nav-icon fas fa-tree" style="color: #e94560;"></i>
+            <p>Art Medium<i class="fas fa-angle-left right"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'add_artmedium' %}" class="nav-link" style="color: #b8b8b8; padding-left: 40px; transition: all 0.3s;" onmouseover="this.style.color='#e94560'; this.style.paddingLeft='45px'" onmouseout="this.style.color='#b8b8b8'; this.style.paddingLeft='40px'">
+                <i class="far fa-circle nav-icon" style="font-size: 10px;"></i>
+                <p>Add Medium</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'manage_artmedium' %}" class="nav-link" style="color: #b8b8b8; padding-left: 40px; transition: all 0.3s;" onmouseover="this.style.color='#e94560'; this.style.paddingLeft='45px'" onmouseout="this.style.color='#b8b8b8'; this.style.paddingLeft='40px'">
+                <i class="far fa-circle nav-icon" style="font-size: 10px;"></i>
+                <p>Manage Medium</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+        <li class="nav-item">
+          <a href="#" class="nav-link" style="color: #f1f1f1; transition: background 0.3s;" onmouseover="this.style.backgroundColor='#16213e'" onmouseout="this.style.backgroundColor='transparent'">
+            <i class="nav-icon fas fa-edit" style="color: #e94560;"></i>
+            <p>Art Products<i class="fas fa-angle-left right"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'add_artproduct' %}" class="nav-link" style="color: #b8b8b8; padding-left: 40px; transition: all 0.3s;" onmouseover="this.style.color='#e94560'; this.style.paddingLeft='45px'" onmouseout="this.style.color='#b8b8b8'; this.style.paddingLeft='40px'">
+                <i class="far fa-circle nav-icon" style="font-size: 10px;"></i>
+                <p>Add Art Products</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'manage_artproduct' %}" class="nav-link" style="color: #b8b8b8; padding-left: 40px; transition: all 0.3s;" onmouseover="this.style.color='#e94560'; this.style.paddingLeft='45px'" onmouseout="this.style.color='#b8b8b8'; this.style.paddingLeft='40px'">
+                <i class="far fa-circle nav-icon" style="font-size: 10px;"></i>
+                <p>Manage Art Products</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+        <li class="nav-item">
+          <a href="#" class="nav-link" style="color: #f1f1f1; transition: background 0.3s;" onmouseover="this.style.backgroundColor='#16213e'" onmouseout="this.style.backgroundColor='transparent'">
+            <i class="nav-icon far fa-envelope" style="color: #e94560;"></i>
+            <p>Enquiry<i class="fas fa-angle-left right"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'totalenquiry' %}" class="nav-link" style="color: #b8b8b8; padding-left: 40px; transition: all 0.3s;" onmouseover="this.style.color='#e94560'; this.style.paddingLeft='45px'" onmouseout="this.style.color='#b8b8b8'; this.style.paddingLeft='40px'">
+                <i class="far fa-circle nav-icon" style="font-size: 10px;"></i>
+                <p>Total Enquiry</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'unanswered_enquiry' %}" class="nav-link" style="color: #b8b8b8; padding-left: 40px; transition: all 0.3s;" onmouseover="this.style.color='#e94560'; this.style.paddingLeft='45px'" onmouseout="this.style.color='#b8b8b8'; this.style.paddingLeft='40px'">
+                <i class="far fa-circle nav-icon" style="font-size: 10px;"></i>
+                <p>Unanswered Enquiry</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'answered_enquiry' %}" class="nav-link" style="color: #b8b8b8; padding-left: 40px; transition: all 0.3s;" onmouseover="this.style.color='#e94560'; this.style.paddingLeft='45px'" onmouseout="this.style.color='#b8b8b8'; this.style.paddingLeft='40px'">
+                <i class="far fa-circle nav-icon" style="font-size: 10px;"></i>
+                <p>Answered Enquiry</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+        <li class="nav-item">
+          <a href="{% url 'search_enquiry' %}" class="nav-link" style="color: #f1f1f1; transition: background 0.3s;" onmouseover="this.style.backgroundColor='#16213e'" onmouseout="this.style.backgroundColor='transparent'">
+            <i class="nav-icon fas fa-search" style="color: #e94560;"></i>
+            <p>Search<i class="fas fa-angle-left right"></i></p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>

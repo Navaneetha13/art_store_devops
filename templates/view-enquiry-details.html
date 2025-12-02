@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>View Details of Enquiry</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+            <li class="breadcrumb-item active">View Details of Enquiry</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>    <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                {% if messages %}
+                {% for message in messages %}
+                 {% if message.tags == 'error' %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                 </button>
+                  </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                   {% if messages %}
+                {% for message in messages %}
+                 {% if message.tags == 'success' %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                 </button>
+                  </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+              <table id="example2" class="table table-bordered table-hover">
+                {% for i in view_enq %}   
+                <tr>
+                    <th>Enquiry Number</th>
+                       <td colspan="3">{{i.enquirynumber }}</td>
+                       </tr> 
+<tr>
+                    <th>Full Name</th>
+                       <td>{{i.fullname }}</td>
+                 
+                    <th>Art Name</th>
+                       <td>{{i.prod_id.title }}<br />
+                        <a href="{% url 'view_product' i.prod_id.id %}" target="_blank">View Details</a>
+                       </td>
+                       </tr>  
+                       <tr>
+                    <th>Art Reference Number</th>
+                       <td>{{i.prod_id.referencenumber}}</td>
+
+                    <th>Email</th>
+                       <td>{{i.email }}</td>
+                     </tr>
+              <tr>  
+                    <th>MobileNumber</th>
+                       <td>{{i.mobnum }}</td>
+                        
+                           <th>Enquiry Date</th>
+                            <td>{{i.enquiry_date }}</td>
+                       </tr>
+                       <tr>
+                        <th>Message</th>
+                          <td>{{i.message }}</td>
+
+<th>Status</th>
+<td>{% if i.status == '' %}
+    <span>Not Answered Yet</span>
+{% elif i.status == 'Answered' %}
+    <span>Answered</span>
+
+{% endif %}</td>
+</tr>
+<tr>
+    <th>Remark</th>
+    <td colspan="8">{% if i.status == '' %}
+        <span>Not Answered Yet</span>
+    {% elif i.status == 'Answered' %}
+        <span>{{i.remark }}</span>
+    
+    {% endif %}</td>
+</tr>
+              </table>
+              
+        {% if i.status == '' %}
+    
+            
+        <p align="center"  style="padding-top: 20px">                            
+          <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Take Action</button></p>{% endif %}  
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+             <div class="modal-content">
+              <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Take Action</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        
+<form method="POST" action="{% url 'update-enquiry-remark' %}">
+{% csrf_token %}
+<div class="modal-body">
+<table class="table table-bordered table-hover data-tables">
+    <tr>
+        <th>Remark :</th>
+        <td>
+            <textarea name="remark" placeholder="Admin Remark" rows="5" cols="100" class="form-control wd-850" required="true"></textarea>
+            <input type="hidden" value="{{ i.id }}" name="enq_id" id="enq_id" class="form-control" required="">
+        </td>
+    </tr> 
+   
+</table>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<button type="submit" class="btn btn-primary">Update</button>
+</div>
+</form>
+        
+        </div>
+        
+        {% endfor %}                   
+                                </div>
+                            </div>
+        
+                    </div> 
+              
+            </div>
+          
+            <!-- /.card-body -->
+          </div>
+          
+          <!-- /.card -->
+
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>{% endblock %}
+  

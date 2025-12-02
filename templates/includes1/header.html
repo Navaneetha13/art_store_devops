@@ -1,0 +1,37 @@
+{% load static %}
+<header id="header" id="home" style="background: linear-gradient(135deg, #fd7e14 0%, #17a2b8 100%); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+    
+    <hr style="border-color: #e94560; margin: 0;">
+    <div class="container">
+        <div class="row align-items-center justify-content-between d-flex" style="padding: 15px 0;">
+            <div id="logo">
+                <a href="{% url 'index' %}" style="font-weight: bolder; font-size: 28px; color: #ffffff; text-decoration: none; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); letter-spacing: 1px; transition: color 0.3s;" onmouseover="this.style.color='#e94560'" onmouseout="this.style.color='#ffffff'">
+                    ArtStore - Online Art Gallery Platform using Cloud Devops
+                </a>
+            </div>
+            <nav id="nav-menu-container">
+                <ul class="nav-menu" style="list-style: none; display: flex; gap: 30px; margin: 0; padding: 0;">
+                    <li class="menu-active">
+                        <a href="{% url 'index' %}" style="color: #e94560; font-weight: 600; text-decoration: none; transition: all 0.3s; padding: 8px 15px; border-radius: 5px;" onmouseover="this.style.backgroundColor='#e94560'; this.style.color='#ffffff'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#e94560'">Home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'art_product_list' %}" style="color: #f1f1f1; font-weight: 500; text-decoration: none; transition: all 0.3s; padding: 8px 15px; border-radius: 5px;" onmouseover="this.style.backgroundColor='#e94560'; this.style.color='#ffffff'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#f1f1f1'">Art Product</a>
+                    </li>
+                    <li class="menu-has-children">
+                        <a href="" style="color: #f1f1f1; font-weight: 500; text-decoration: none; transition: all 0.3s; padding: 8px 15px; border-radius: 5px;" onmouseover="this.style.backgroundColor='#e94560'; this.style.color='#ffffff'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#f1f1f1'">Art Type</a>
+                        <ul style="background-color: #16213e; border: 2px solid #e94560; border-radius: 5px; padding: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.4);">
+                            {% for arttype in arttypes %}
+                            <li style="margin: 5px 0;">
+                                <a href="{% url 'arttype_detail' id=arttype.id %}" style="color: #f1f1f1; text-decoration: none; display: block; padding: 8px 15px; transition: all 0.3s; border-radius: 3px;" onmouseover="this.style.backgroundColor='#e94560'; this.style.color='#ffffff'; this.style.paddingLeft='20px'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#f1f1f1'; this.style.paddingLeft='15px'">{{ arttype.arttype }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{% url 'login' %}" style="color: #f1f1f1; font-weight: 500; text-decoration: none; transition: all 0.3s; padding: 8px 15px; border-radius: 5px;" onmouseover="this.style.backgroundColor='#e94560'; this.style.color='#ffffff'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#f1f1f1'">ADMIN</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,69 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+{% block content %}
+			<!-- start banner Area -->
+			{% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                <strong>Message:</strong> {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+
+			<section class="banner-area relative" id="home">	
+				<div class="overlay overlay-bg"></div>
+				<div class="container">
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								Enquiry		
+							</h1>	
+							<p class="text-white link-nav"><a href="{% url 'index' %}">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{% url 'contactus' %}"> Art Products</a></p>
+						</div>											
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->	
+			
+
+			<!-- Start upcoming-exibition Area -->
+			<section class="contact-page-area section-gap">
+				<div class="container">
+					<div class="row">
+					
+					<div class="title text-center">
+								<h3 class="mb-10">Enquiry For Product({{sinprod.title}}:({{sinprod.referencenumber }}))</h3>
+                                <br>
+								
+							</div>
+						<div class="col-lg-8">
+                
+           
+							<form class="form-area "  action="{% url 'enquiry_details' %}" method="POST" class="contact-form text-right">
+                                {% csrf_token %}
+								<div class="row">	
+									<div class="col-lg-6 form-group">
+										<input name="fullname" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your fullname'" class="common-input mb-20 form-control" required="" type="text">
+                                        <input name="prod_id" required="" type="hidden" value="{{sinprod.id}}">
+									
+										<input name="email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mb-20 form-control" required="" type="email">
+
+										<input name="mobnum" maxlength="10" pattern="[0-9]+" placeholder="Enter your mobile number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your mobile number'" class="common-input mb-20 form-control" required="" type="text">
+										<div class="mt-20 alert-msg" style="text-align: left;"></div>
+									</div>
+									<div class="col-lg-6 form-group">
+										<textarea class="common-textarea form-control" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+										<button class="primary-btn mt-20 text-white" style="float: right;">Send</button>
+					
+									</div>
+								</div>
+							</form>	
+						</div>
+					</div>
+				</div>	
+			</section>
+           
+
+			{% endblock %}

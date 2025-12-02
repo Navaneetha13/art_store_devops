@@ -1,0 +1,127 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+{% block content %}
+  <!-- start banner Area -->
+  <section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>	
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-center">
+            <div class="banner-content col-lg-8">
+
+            </div>											
+        </div>
+    </div>					
+</section>
+<!-- End banner Area -->	
+
+<!-- Start service Area -->
+<section class="service-area pt-100" id="about" style="background-color: #d9ed92;"> 
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="single-service">
+                  <span class="lnr lnr-clock"></span>
+                  <h4>Openning Hours</h4>
+                  <p>
+                      Mon - Fri: 10.00am to 05.00pm
+                    Sat: 12.00pm to 03.00 pm
+                    Sunday Closed
+                  </p>						 	
+                  <div class="overlay">
+                    <div class="text">
+                        <p>
+                            Here, I focus on a range of items and features that we use in life Here, I focus on a range of items and features that we use in life Here, I focus on a range of items and features.that we use in life
+                        </p>
+                     
+                    </div>
+                  </div>
+                </div>							
+            </div>
+            <div class="col-lg-4">
+                <div class="single-service">
+                  <span class="lnr lnr-rocket"></span>
+                  <h4>Ongoing Exhibitions</h4>
+                  <p>
+                      Mon - Fri: 10.00am to 05.00pm
+                    Sat: 12.00pm to 03.00 pm
+                    Sunday Closed
+                  </p>						 	
+                  <div class="overlay">
+                    <div class="text">
+                        <p>
+                            Here, I focus on a range of items and features that we use in life Here, I focus on a range of items and features that we use in life Here, I focus on a range of items and features.that we use in life
+                        </p>
+                      
+                    </div>
+                  </div>
+                </div>							
+            </div>
+            <div class="col-lg-4">
+                <div class="single-service">
+                  <span class="lnr lnr-briefcase"></span>
+                  <h4>Openning Events</h4>
+                  <p>
+                      Mon - Fri: 10.00am to 05.00pm
+                    Sat: 12.00pm to 03.00 pm
+                    Sunday Closed
+                  </p>						 	
+                  <div class="overlay">
+                    <div class="text">
+                        <p>
+                            Here, I focus on a range of items and features that we use in life Here, I focus on a range of items and features that we use in life Here, I focus on a range of items and features.that we use in life
+                        </p>
+                       
+                    </div>
+                  </div>
+                </div>							
+            </div>												
+        </div>
+    </div>	
+</section>
+<!-- End service Area -->
+
+
+
+<!-- Start exibition Area -->
+<section class="exibition-area section-gap" id="exhibitions" style="background-color: #d9ed92;">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-60 col-lg-10">
+                <div class="title text-center">
+                    <h1 class="mb-10">Online Art Exhibitions</h1>
+                    <p>Who are in extremely love with eco friendly system.</p>
+                </div>
+            </div>
+        </div>						
+        <div class="row">
+            <div class="active-exibition-carusel">
+                {% for i in artproducts1  %}
+                <div class="single-exibition item">
+                    <img src="{{i.images.url}}" alt="">
+                   <br>
+                    <a href="{% url 'view_singleproduct' i.id %}"><h4>{{i.title}} by ({{i.artist.name}})</h4></a>
+                    <p>
+                        {{i.description|slice:":300"}}
+                    </p>
+                    <p class="date">{{i.created_at}}</p>
+                </div>{% endfor %}
+
+            </div>													
+        </div>
+    </div>	
+</section>
+<!-- End exibition Area -->			
+
+<!-- Start upcoming-event Area -->
+
+<!-- End upcoming-event Area -->
+
+
+
+<!-- Start gallery Area -->
+{% endblock %}
+<!-- End gallery Area -->
+
+
+

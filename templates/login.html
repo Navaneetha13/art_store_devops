@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Art Exhibition Management System</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="{% static 'assets/plugins/fontawesome-free/css/all.min.css'%}">
+  <link rel="stylesheet" href="{% static 'assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css'%}">
+  <link rel="stylesheet" href="{% static 'assets/dist/css/adminlte.min.css'%}">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f4fd 0%, #ffffff 50%, #fdfdff 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .login-box {
+      margin-top: 10vh;
+    }
+    .card {
+  background: linear-gradient(135deg, #676565 0%, #8d8d8d 100%);
+      border: 3px solid #fcf8f9;
+      box-shadow: 0 15px 40px rgba(134, 130, 130, 0.5);
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    .card-header {
+      background: linear-gradient(135deg, #fd7e14 0%, #20c997 100%);
+      padding: 25px;
+      border-bottom: 3px solid #fae94e;
+    }
+    .card-header .h1 {
+      color: white;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
+      letter-spacing: 2px;
+      text-decoration: none;
+      transition: transform 0.3s;
+    }
+    .card-header .h1:hover {
+      transform: scale(1.05);
+    }
+    .card-body {
+      padding: 30px;
+  background: linear-gradient(135deg, #676565 0%, #8d8d8d 100%);
+    }
+    .login-box-msg {
+      color: #f1f1f1;
+      font-weight: 600;
+      font-size: 18px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .form-control {
+      background-color: #0f0e17;
+      border: 2px solid #e6e945;
+      color: #f1f1f1;
+      padding: 12px;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+    .form-control:focus {
+      background-color: #1a1a2e;
+      border-color: #bfca25;
+      color: #f1f1f1;
+      box-shadow: 0 0 15px rgba(233, 69, 96, 0.5);
+    }
+    .form-control::placeholder {
+      color: #b8b8b8;
+    }
+    .input-group-text {
+      background: linear-gradient(135deg, #ffde7d 0%, #d14e68 100%);
+      border: 2px solid #fcff35;
+      color: white;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #ffde7d 0%, #d14e68 100%);
+      border: none;
+      color: white;
+      font-weight: 700;
+      padding: 12px;
+      border-radius: 8px;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(233, 69, 96, 0.6);
+    }
+    .btn-block {
+      background: linear-gradient(135deg, #023047 0%, #126782 100%);
+      border: 2px solid #219ebc;
+      color: white;
+      font-weight: 600;
+      padding: 12px;
+      border-radius: 8px;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+    }
+    .btn-block:hover {
+      background: linear-gradient(135deg, #219ebc 0%, #8ecae6 100%);
+      color: #0f0e17;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(33, 158, 188, 0.5);
+    }
+    .alert {
+      background: linear-gradient(135deg, #ffde7d 0%, #d14e68 100%);
+      border: none;
+      color: white;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .social-auth-links {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="{% url 'login' %}" class="h1">ADMIN</a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
+
+      <form action="{% url 'doLogin' %}" method="POST">
+        {% csrf_token %}
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.tags == 'error' %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.tags == 'success' %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Username" name="username">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password" name="password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="social-auth-links text-center mt-2 mb-3">
+        <a href="{% url 'index' %}" class="btn btn-block">
+           <i class="fas fa-home mr-2"></i> Home
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'assets/plugins/jquery/jquery.min.js'%}"></script>
+<script src="{% static 'assets/plugins/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+<script src="{% static 'assets/dist/js/adminlte.min.js'%}"></script>
+</body>
+</html>

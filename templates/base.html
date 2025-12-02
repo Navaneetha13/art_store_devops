@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Art Exhibition Management System | Dashboard</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'assets/plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="{% static 'assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{% static 'assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="{% static 'assets/plugins/jqvmap/jqvmap.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'assets/dist/css/adminlte.min.css' %}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{% static 'assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="{% static 'assets/plugins/daterangepicker/daterangepicker.css' %}">
+  <!-- summernote -->
+  <link rel="stylesheet" href="{% static 'assets/plugins/summernote/summernote-bs4.min.css' %}">
+  
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f0e17 0%, #1a1a2e 50%, #16213e 100%);
+      color: #f1f1f1;
+    }
+    .content-wrapper {
+  background: linear-gradient(135deg, #ffffff 0%, #ffd28a 100%);
+      color: #f1f1f1;
+    }
+    .card {
+  background: linear-gradient(135deg, #676565 0%, #8d8d8d 100%);
+      border: 2px solid #e94560;
+      box-shadow: 0 8px 25px rgba(233, 69, 96, 0.3);
+      color: #f1f1f1;
+    }
+    .card-header {
+      background: linear-gradient(135deg, #ffde7d 0%, #d14e68 100%);
+      color: white;
+      border-bottom: 2px solid #e94560;
+    }
+    .form-control {
+      background-color: #0f0e17;
+      border: 2px solid #e94560;
+      color: #f1f1f1;
+      transition: all 0.3s;
+    }
+    .form-control:focus {
+      background-color: #16213e;
+      border-color: #ff6a88;
+      color: #f1f1f1;
+      box-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #ffde7d 0%, #d14e68 100%);
+      border: none;
+      color: white;
+      font-weight: 600;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(233, 69, 96, 0.5);
+    }
+    .btn-success {
+      background: linear-gradient(135deg, #2d6a4f 0%, #40916c 100%);
+      border: none;
+      transition: transform 0.3s;
+    }
+    .btn-success:hover {
+      transform: translateY(-3px);
+    }
+    .btn-danger {
+      background: linear-gradient(135deg, #c1121f 0%, #780000 100%);
+      border: none;
+      transition: transform 0.3s;
+    }
+    .btn-danger:hover {
+      transform: translateY(-3px);
+    }
+    .table {
+      background-color: #16213e;
+      color: #f1f1f1;
+      border: 2px solid #e94560;
+    }
+    .table thead th {
+      background: linear-gradient(135deg, #ffde7d 0%, #d14e68 100%);
+      color: white;
+      border-color: #e94560;
+    }
+    .table-bordered td, .table-bordered th {
+      border-color: #0f3460;
+    }
+    .table-hover tbody tr:hover {
+      background-color: #0f3460;
+      color: #ffffff;
+    }
+    .breadcrumb {
+  background: linear-gradient(135deg, #676565 0%, #8d8d8d 100%);
+      border: 1px solid #e94560;
+    }
+    .breadcrumb-item a {
+      color: #e94560;
+    }
+    .breadcrumb-item.active {
+      color: #f1f1f1;
+    }
+    .alert-warning {
+      background: linear-gradient(135deg, #ffde7d 0%, #d14e68 100%);
+      border-color: #e94560;
+      color: white;
+    }
+    label {
+      color: #f1f1f1;
+      font-weight: 600;
+    }
+    .pagination .step-links a {
+      color: #e94560;
+      margin: 0 5px;
+      padding: 8px 15px;
+      background-color: #16213e;
+      border: 2px solid #e94560;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .pagination .step-links a:hover {
+      background-color: #e94560;
+      color: white;
+      transform: translateY(-2px);
+    }
+    .pagination .current {
+      color: #f1f1f1;
+      margin: 0 15px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  {% include 'includes/header.html' %}
+  {% include 'includes/sidebar.html' %}
+  
+  <div class="content-wrapper">
+    {% block content %}
+    {% endblock %}
+  </div>
+  
+  {% include 'includes/footer.html' %}
+
+  <aside class="control-sidebar control-sidebar-dark">
+  </aside>
+</div>
+
+<!-- jQuery -->
+<script src="{% static 'assets/plugins/jquery/jquery.min.js'%}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{% static 'assets/plugins/jquery-ui/jquery-ui.min.js'%}"></script>
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'assets/plugins/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+<!-- ChartJS -->
+<script src="{% static 'assets/plugins/chart.js/Chart.min.js'%}"></script>
+<!-- Sparkline -->
+<script src="{% static 'assets/plugins/sparklines/sparkline.js'%}"></script>
+<!-- JQVMap -->
+<script src="{% static 'assets/plugins/jqvmap/jquery.vmap.min.js'%}"></script>
+<script src="{% static 'assets/plugins/jqvmap/maps/jquery.vmap.usa.js'%}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{% static 'assets/plugins/jquery-knob/jquery.knob.min.js'%}"></script>
+<!-- daterangepicker -->
+<script src="{% static 'assets/plugins/moment/moment.min.js'%}"></script>
+<script src="{% static 'assets/plugins/daterangepicker/daterangepicker.js'%}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{% static 'assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js'%}"></script>
+<!-- Summernote -->
+<script src="{% static 'assets/plugins/summernote/summernote-bs4.min.js'%}"></script>
+<!-- overlayScrollbars -->
+<script src="{% static 'assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'%}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'assets/dist/js/adminlte.js'%}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'assets/dist/js/demo.js'%}"></script>
+<!-- AdminLTE dashboard demo -->
+<script src="{% static 'assets/dist/js/pages/dashboard.js'%}"></script>
+</body>
+</html>

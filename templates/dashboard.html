@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0" style="color: #e94560; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Dashboard</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-4 col-6">
+          <div class="small-box" style="background: linear-gradient(135deg, #0f0e17 0%, #16213e 100%); border: 3px solid #e94560; box-shadow: 0 8px 25px rgba(233, 69, 96, 0.4); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div class="inner">
+              <h3 style="color: #e94560; font-weight: 700;">{{artist_count}}</h3>
+              <p style="color: #f1f1f1; font-weight: 600;">Total Artist</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag" style="color: rgba(233, 69, 96, 0.3);"></i>
+            </div>
+            <a href="{% url 'manage_artist' %}" class="small-box-footer" style="background: linear-gradient(135deg, #ffde7d 0%, #d14e68 100%); color: white; font-weight: 600;">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-6">
+          <div class="small-box" style="background: linear-gradient(135deg, #2d6a4f 0%, #40916c 100%); border: 3px solid #52b788; box-shadow: 0 8px 25px rgba(82, 183, 136, 0.4); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div class="inner">
+              <h3 style="color: #ffffff; font-weight: 700;">{{type_count}}</h3>
+              <p style="color: #ffffff; font-weight: 600;">Total Art Type</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars" style="color: rgba(255, 255, 255, 0.3);"></i>
+            </div>
+            <a href="{% url 'manage_arttype' %}" class="small-box-footer" style="background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%); color: white; font-weight: 600;">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-6">
+          <div class="small-box" style="background: linear-gradient(135deg, #d4a373 0%, #b08968 100%); border: 3px solid #dda15e; box-shadow: 0 8px 25px rgba(221, 161, 94, 0.4); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div class="inner">
+              <h3 style="color: #0f0e17; font-weight: 700;">{{med_count}}</h3>
+              <p style="color: #0f0e17; font-weight: 600;">Total Art Medium</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add" style="color: rgba(15, 14, 23, 0.2);"></i>
+            </div>
+            <a href="{% url 'manage_artmedium' %}" class="small-box-footer" style="background: linear-gradient(135deg, #9c6644 0%, #8d5524 100%); color: white; font-weight: 600;">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 col-6">
+          <div class="small-box" style="background: linear-gradient(135deg, #540b0e 0%, #9e2a2b 100%); border: 3px solid #e63946; box-shadow: 0 8px 25px rgba(230, 57, 70, 0.4); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div class="inner">
+              <h3 style="color: #ffffff; font-weight: 700;">{{artprod_count}}</h3>
+              <p style="color: #ffffff; font-weight: 600;">Total Products</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag" style="color: rgba(255, 255, 255, 0.3);"></i>
+            </div>
+            <a href="{% url 'manage_artproduct' %}" class="small-box-footer" style="background: linear-gradient(135deg, #335c67 0%, #540b0e 100%); color: white; font-weight: 600;">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-6">
+          <div class="small-box" style="background: linear-gradient(135deg, #7209b7 0%, #b5179e 100%); border: 3px solid #f72585; box-shadow: 0 8px 25px rgba(247, 37, 133, 0.4); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div class="inner">
+              <h3 style="color: #ffffff; font-weight: 700;">{{unreadenq_count}}</h3>
+              <p style="color: #ffffff; font-weight: 600;">Total Unread Enquiry</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars" style="color: rgba(255, 255, 255, 0.3);"></i>
+            </div>
+            <a href="{% url 'unanswered_enquiry' %}" class="small-box-footer" style="background: linear-gradient(135deg, #560bad 0%, #7209b7 100%); color: white; font-weight: 600;">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-6">
+          <div class="small-box" style="background: linear-gradient(135deg, #023047 0%, #126782 100%); border: 3px solid #219ebc; box-shadow: 0 8px 25px rgba(33, 158, 188, 0.4); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div class="inner">
+              <h3 style="color: #ffffff; font-weight: 700;">{{readenq_count}}</h3>
+              <p style="color: #ffffff; font-weight: 600;">Total Read Enquiry</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add" style="color: rgba(255, 255, 255, 0.3);"></i>
+            </div>
+            <a href="{% url 'answered_enquiry' %}" class="small-box-footer" style="background: linear-gradient(135deg, #023047 0%, #014f86 100%); color: white; font-weight: 600;">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+{% endblock %}
