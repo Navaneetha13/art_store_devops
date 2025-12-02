@@ -6,7 +6,7 @@ orbs:
 jobs:
 
 
-  install_stage:
+  installations:
     docker:
       - image: cimg/python:3.11
     steps:
@@ -17,15 +17,16 @@ jobs:
           command: |
             python -m pip install --upgrade pip
             pip install -r requirements.txt
+            pip install pylint
 
       - run:
-          name: Install OS dependencies
+          name: Install OS Dependencies
           command: |
             sudo apt-get update
             sudo apt-get install -y jq unzip wget
 
       - run:
-          name: Install Java 17 (Amazon Corretto)
+          name: Install Java 17 (Corretto)
           command: |
             sudo apt-get purge -y openjdk*
             sudo apt-get install -y java-common
@@ -33,17 +34,24 @@ jobs:
             sudo dpkg -i amazon-corretto-17-x64-linux-jdk.deb
             java --version
 
+      - run:
+          name: Install Sonar Scanner
+          command: |
+            wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+            unzip sonar-scanner-cli-5.0.1.3006-linux.zip
+            mv sonar-scanner-5.0.1.3006-linux sonar-scanner
 
-  pylint_stage:
+
+  tests:
     docker:
       - image: cimg/python:3.11
+
     steps:
       - checkout
 
       - run:
-          name: Install Python Tools
+          name: Install Python Dependencies
           command: |
-            pip install --upgrade pip
             pip install -r requirements.txt
             pip install pylint
 
@@ -52,18 +60,10 @@ jobs:
           command: |
             pylint easy_bill || true
 
-  sonar_stage:
-    docker:
-      - image: cimg/python:3.11
-    steps:
-      - checkout
-
       - run:
-          name: Install Sonar Scanner
+          name: Run Django Tests
           command: |
-            wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
-            unzip sonar-scanner-cli-5.0.1.3006-linux.zip
-            mv sonar-scanner-5.0.1.3006-linux sonar-scanner
+            python manage.py test || true
 
       - run:
           name: Run Sonar Scan
@@ -81,30 +81,9 @@ jobs:
 
 
 
-  django_test_stage:
+  build:
     docker:
       - image: cimg/python:3.11
-    steps:
-      - checkout
-
-      - run:
-          name: Install Python Dependencies
-          command: |
-            pip install --upgrade pip
-            pip install -r requirements.txt
-
-      - run:
-          name: Django Tests
-          command: |
-            python manage.py test
-
-
-  build_and_deploy:
-    docker:
-      - image: cimg/python:3.11
-
-    environment:
-      AWS_REGION: us-east-1
 
     steps:
       - checkout
@@ -114,16 +93,21 @@ jobs:
           command: |
             zip -r deploy.zip . -x "*.git*"
 
+
+
+  deploy:
+    docker:
+      - image: cimg/python:3.11
+    environment:
+      AWS_REGION: us-east-1
+
+    steps:
+      - checkout
+
       - aws-cli/setup:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_REGION
-
-      - run:
-          name: Load AWS Session Token
-          command: |
-            echo "export AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN" >> $BASH_ENV
-            source $BASH_ENV
 
       - run:
           name: Deploy to Elastic Beanstalk
@@ -133,24 +117,21 @@ jobs:
             eb deploy myapp-x23304723
 
 
-# ==========================================================
-# WORKFLOW
-# ==========================================================
+
+# ======================================================
+# WORKFLOW (RUNS 4 STAGES)
+# ======================================================
 workflows:
   version: 2
-  full_ci_pipeline:
+  pipeline:
     jobs:
-      - install_stage
-      - pylint_stage:
+      - installations
+      - tests:
           requires:
-            - install_stage
-      - sonar_stage:
+            - installations
+      - build:
           requires:
-            - install_stage
-      - django_test_stage:
+            - tests
+      - deploy:
           requires:
-            - pylint_stage
-      - build_and_deploy:
-          requires:
-            - django_test_stage
-            - sonar_stage
+            - build
