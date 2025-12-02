@@ -63,6 +63,5 @@ urlpatterns = [
     path('ViewEnquiry/<str:id>', views.VIEW_ENQUIRY, name='view-enquiry'),
     path('UpdateEnquiryRemark', views.UPDATE_ENQUIRY_REMARK, name='update-enquiry-remark'),
     path('SearchEnquiry', views.SEARCH_ENQUIRY, name='search_enquiry'),
-    #Website Page
     path('Website/update', views.WEBSITE_UPDATE, name='website_update'),
 ]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
