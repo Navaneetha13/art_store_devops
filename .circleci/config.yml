@@ -80,6 +80,7 @@ jobs:
               -Dsonar.scm.exclusions.enabled=true \
               || true
 
+
   build:
     docker:
       - image: cimg/python:3.11
