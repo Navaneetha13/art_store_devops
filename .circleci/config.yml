@@ -45,39 +45,47 @@ jobs:
   tests:
     docker:
       - image: cimg/python:3.11
-
+  
     steps:
       - checkout
-
+  
       - run:
           name: Install Python Dependencies
           command: |
             pip install -r requirements.txt
             pip install pylint
-
+  
+      - run:
+          name: Install SonarScanner
+          command: |
+            wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+            unzip sonar-scanner-cli-5.0.1.3006-linux.zip
+            mv sonar-scanner-5.0.1.3006-linux sonar-scanner
+  
+      - run:
+          name: Add Sonar Scanner to PATH
+          command: |
+            echo 'export PATH=$(pwd)/sonar-scanner/bin:$PATH' >> $BASH_ENV
+            source $BASH_ENV
+  
       - run:
           name: Run pylint
-          command: |
-            pylint art_store --ignore=views.py || true
-
-
+          command: pylint art_store --ignore=views.py || true
+  
       - run:
           name: Run Django Tests
-          command: |
-            python manage.py test || true
-
+          command: python manage.py test || true
+  
       - run:
           name: Run Sonar Scan
           command: |
-            sonar-scanner/bin/sonar-scanner \
-              -Dsonar.login=b7e7bb09704134549e97c60713030866471ceece \
+            sonar-scanner \
+              -Dsonar.login=$SONAR_TOKEN \
               -Dsonar.host.url=https://sonarcloud.io \
               -Dsonar.projectKey=Navaneetha13_art_store_devops \
               -Dsonar.organization=navaneetha13 \
-              -Dsonar.exclusions=**/.c9/**,**/node_modules/**,**/venv/** \
-              -Dsonar.text.exclusions=**/.c9/** \
+              -Dsonar.exclusions=**/migrations/**,**/static/**,**/media/**,**/.c9/** \
               -Dsonar.scm.disabled=true \
-              -Dsonar.scm.exclusions.enabled=true \
               || true
 
 
