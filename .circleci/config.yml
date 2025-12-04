@@ -80,7 +80,7 @@ jobs:
           name: Run Sonar Scan
           command: |
             sonar-scanner \
-              -Dsonar.login=$SONAR_TOKEN \
+              -Dsonar.login=b7e7bb09704134549e97c60713030866471ceece \
               -Dsonar.host.url=https://sonarcloud.io \
               -Dsonar.projectKey=Navaneetha13_art_store_devops \
               -Dsonar.organization=navaneetha13 \
