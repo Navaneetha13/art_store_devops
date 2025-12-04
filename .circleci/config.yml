@@ -80,10 +80,10 @@ jobs:
           name: Run Sonar Scan
           command: |
             sonar-scanner \
-              -Dsonar.login=b7e7bb09704134549e97c60713030866471ceece \
+              -Dsonar.login=$SONAR_TOKEN \
               -Dsonar.host.url=https://sonarcloud.io \
-              -Dsonar.projectKey=Navaneetha13_art_store_devops \
-              -Dsonar.organization=navaneetha13 \
+              -Dsonar.projectKey=$SONAR_PROJECT_KEY \
+              -Dsonar.organization=$SONAR_ORG \
               -Dsonar.exclusions=**/migrations/**,**/static/**,**/media/**,**/.c9/** \
               -Dsonar.scm.disabled=true \
               || true
