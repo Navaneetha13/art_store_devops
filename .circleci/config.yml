@@ -54,6 +54,11 @@ jobs:
           command: |
             pip install -r requirements.txt
             pip install pylint
+            
+      - run:
+          name: Run collectstatic
+          command: |
+            python manage.py collectstatic --noinput
   
       - run:
           name: Install SonarScanner
