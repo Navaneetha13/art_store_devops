@@ -1,8 +1,6 @@
 Django
 gunicorn==20.1.0
 pymysql==1.1.1
-boto3
-botocore==1.33.13
 Pillow==9.5.0
 requests
 whitenoise

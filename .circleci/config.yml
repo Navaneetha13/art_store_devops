@@ -89,7 +89,7 @@ jobs:
               -Dsonar.host.url=https://sonarcloud.io \
               -Dsonar.projectKey=$SONAR_PROJECT_KEY \
               -Dsonar.organization=$SONAR_ORG \
-              -Dsonar.exclusions=**/migrations/**,**/static/**,**/media/**,**/.c9/** \
+              -Dsonar.exclusions=**/migrations/**,**/static/**,**/staticfiles/**,**/.git/**,**/.platform/**,**/media/**,**/.c9/** \
               -Dsonar.scm.disabled=true \
               || true
 

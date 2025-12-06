@@ -275,25 +275,25 @@ def ADD_ARTIST(request):
             )
             artist_obj.save()
 
-            # Upload image to S3 (if applicable)
-            if s3_image_upload(request.FILES.get('images')):
-                print("-------------------------> FILE UPLOADED SUCCESSFULLY")
-            else:
-                print("-------------------------> FILE UPLOAD FAILED...")
+            # # Upload image to S3 (if applicable)
+            # if s3_image_upload(request.FILES.get('images')):
+            #     print("-------------------------> FILE UPLOADED SUCCESSFULLY")
+            # else:
+            #     print("-------------------------> FILE UPLOAD FAILED...")
 
-            email_subject = "New Artist Added!"
-            email_message = f"New artist '{artist_obj.name}' has been successfully added.\n\n" \
-                            f"Mobile: {artist_obj.mobnum}\n" \
-                            f"Email: {artist_obj.email}\n" \
-                            f"Education Details: {artist_obj.edudetails}\n" \
-                            f"Award Details: {artist_obj.awarddetails}"
+            # email_subject = "New Artist Added!"
+            # email_message = f"New artist '{artist_obj.name}' has been successfully added.\n\n" \
+            #                 f"Mobile: {artist_obj.mobnum}\n" \
+            #                 f"Email: {artist_obj.email}\n" \
+            #                 f"Education Details: {artist_obj.edudetails}\n" \
+            #                 f"Award Details: {artist_obj.awarddetails}"
 
-            email_response = send_email_api(email_subject, email_message, artist_obj.email)
+            # email_response = send_email_api(email_subject, email_message, artist_obj.email)
 
-            if email_response:
-                print(f"Email API Response: {email_response}")
-            else:
-                print("Error: Email could not be sent")
+            # if email_response:
+            #     print(f"Email API Response: {email_response}")
+            # else:
+            #     print("Error: Email could not be sent")
 
             # Success message
             messages.success(request, "Artist details have been created successfully")
