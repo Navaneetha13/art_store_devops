@@ -275,25 +275,7 @@ def ADD_ARTIST(request):
             )
             artist_obj.save()
 
-            # # Upload image to S3 (if applicable)
-            # if s3_image_upload(request.FILES.get('images')):
-            #     print("-------------------------> FILE UPLOADED SUCCESSFULLY")
-            # else:
-            #     print("-------------------------> FILE UPLOAD FAILED...")
 
-            # email_subject = "New Artist Added!"
-            # email_message = f"New artist '{artist_obj.name}' has been successfully added.\n\n" \
-            #                 f"Mobile: {artist_obj.mobnum}\n" \
-            #                 f"Email: {artist_obj.email}\n" \
-            #                 f"Education Details: {artist_obj.edudetails}\n" \
-            #                 f"Award Details: {artist_obj.awarddetails}"
-
-            # email_response = send_email_api(email_subject, email_message, artist_obj.email)
-
-            # if email_response:
-            #     print(f"Email API Response: {email_response}")
-            # else:
-            #     print("Error: Email could not be sent")
 
             # Success message
             messages.success(request, "Artist details have been created successfully")
@@ -740,29 +722,6 @@ def VIEW_ENQUIRY(request,id):
          
     }
     return render(request,'view-enquiry-details.html',context)
-
-
-# def UPDATE_ENQUIRY_REMARK(request):
-#     enq_id = request.POST.get('enq_id')
-#     remark_text = request.POST.get('remark')
-
-#     try:
-#         enquiry_update = Enquiry.objects.get(id=enq_id)
-#         enquiry_update.remark = remark_text
-#         enquiry_update.status = 'Answered'
-#         enquiry_update.remark_date = timezone.now()  # Assuming there's a field to record the date of the remark
-#         enquiry_update.save()
-
-#         messages.success(request, "Status updated successfully")
-#     except Enquiry.DoesNotExist:
-#         messages.error(request, "Enquiry not found")
-#     except Exception as e:
-#         messages.error(request, f"An error occurred: {str(e)}")
-
-#     return redirect('totalenquiry')
-
-
-
 
 
 from django.core.mail import send_mail
