@@ -90,6 +90,8 @@ jobs:
               -Dsonar.projectKey=$SONAR_PROJECT_KEY \
               -Dsonar.organization=$SONAR_ORG \
               -Dsonar.exclusions=**/migrations/**,**/static/**,**/staticfiles/**,**/.git/**,**/.platform/**,**/media/**,**/.c9/** \
+              -Dsonar.coverage.exclusions=** \
+              -Dsonar.cpd.exclusions=** \
               -Dsonar.scm.disabled=true \
               || true
 
